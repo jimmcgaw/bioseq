@@ -1,0 +1,29 @@
+{
+  "name": "bioseq",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimmcgaw/bioseq.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jimmcgaw/bioseq/issues"
+  },
+  "homepage": "https://github.com/jimmcgaw/bioseq#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-inject": "^4.1.0",
+    "gulp-sass": "^2.3.2",
+    "wiredep": "^4.0.0"
+  },
+  "dependencies": {
+    "bower": "^1.7.9"
+  }
+}
