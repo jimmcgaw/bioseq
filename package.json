@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "bower install",
-    "postinstall": "./node_modules/.bin/bower install"
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
