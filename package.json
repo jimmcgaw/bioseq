@@ -2,9 +2,8 @@
   "name": "bioseq",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "gulpfile.js",
   "scripts": {
-    "preinstall": "bower install",
     "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
