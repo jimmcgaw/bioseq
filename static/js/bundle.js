@@ -21577,6 +21577,12 @@
 	  _createClass(AlignmentForm, [{
 	    key: "render",
 	    value: function render() {
+	      var _props = this.props;
+	      var seq1 = _props.seq1;
+	      var seq2 = _props.seq2;
+	      var onSequenceUpdate = _props.onSequenceUpdate;
+	      var onSequenceAlign = _props.onSequenceAlign;
+
 	      return _react2.default.createElement(
 	        "div",
 	        null,
@@ -21591,7 +21597,7 @@
 	              null,
 	              "Sequence 1"
 	            ),
-	            _react2.default.createElement("input", { name: "seq1", className: "form-control", type: "text", id: "seq1", placeholder: "Sequence 1", value: this.props.seq1, onChange: this.props.onSequenceUpdate })
+	            _react2.default.createElement("input", { required: true, name: "seq1", className: "form-control", type: "text", id: "seq1", placeholder: "Sequence 1", value: seq1, onChange: onSequenceUpdate })
 	          ),
 	          _react2.default.createElement(
 	            "div",
@@ -21601,14 +21607,14 @@
 	              null,
 	              "Sequence 2"
 	            ),
-	            _react2.default.createElement("input", { name: "seq2", className: "form-control", type: "text", id: "seq2", placeholder: "Sequence 2", value: this.props.seq2, onChange: this.props.onSequenceUpdate })
+	            _react2.default.createElement("input", { required: true, name: "seq2", className: "form-control", type: "text", id: "seq2", placeholder: "Sequence 2", value: seq2, onChange: onSequenceUpdate })
 	          ),
 	          _react2.default.createElement(
 	            "div",
 	            { className: "form-group" },
 	            _react2.default.createElement(
 	              "button",
-	              { className: "btn btn-primary", onClick: this.props.onSequenceAlign },
+	              { className: "btn btn-primary", onClick: onSequenceAlign },
 	              "Align"
 	            )
 	          )
@@ -21661,23 +21667,38 @@
 	      var results = this.props.results;
 	      return _react2.default.createElement(
 	        "div",
-	        { className: "jumbotron results" },
-	        _react2.default.createElement(
+	        null,
+	        results.error && _react2.default.createElement(
 	          "div",
-	          null,
-	          results.seq1
+	          { className: "alert alert-danger", role: "alert" },
+	          _react2.default.createElement(
+	            "strong",
+	            null,
+	            "Error!"
+	          ),
+	          " ",
+	          results.error
 	        ),
 	        _react2.default.createElement(
 	          "div",
-	          null,
-	          results.seq2
-	        ),
-	        _react2.default.createElement("br", null),
-	        _react2.default.createElement(
-	          "div",
-	          null,
-	          "Score: ",
-	          results.score
+	          { className: "jumbotron results" },
+	          _react2.default.createElement(
+	            "div",
+	            null,
+	            results.seq1
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            null,
+	            results.seq2
+	          ),
+	          _react2.default.createElement("br", null),
+	          _react2.default.createElement(
+	            "div",
+	            null,
+	            "Score: ",
+	            results.score
+	          )
 	        )
 	      );
 	    }

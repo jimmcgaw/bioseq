@@ -15,23 +15,28 @@ def send_static(filename):
 
 @app.route('/align')
 def align():
-    seq1 = request.args.get('seq1', '')
-    seq2 = request.args.get('seq2', '')
+    seq1 = request.args.get('seq1', u'')
+    seq2 = request.args.get('seq2', u'')
 
-    data = {}
+    data = {
+        u'seq1': seq1,
+        u'seq2': seq2
+    }
+    if len(seq1) == 0 or len(seq2) == 0:
+        data['results'] = {
+            u'error': u'Both sequences must contain characters'
+        }
+
     results = pairwise2.align.globalxx(seq1, seq2)
     if len(results) > 0:
         results = sorted(results, key=lambda x: x[2], reverse=True)
         alignment = results[0]
-        data = {
-            u'results': {
-                u'seq1': alignment[0],
-                u'seq2': alignment[1],
-                u'score': alignment[2]
-            },
-            u'seq1': seq1,
-            u'seq2': seq2
+        data['results'] = {
+            u'seq1': alignment[0],
+            u'seq2': alignment[1],
+            u'score': alignment[2]
         }
+
     return jsonify(**data)
 
 if __name__ == "__main__":
