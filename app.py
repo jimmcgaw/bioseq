@@ -17,14 +17,21 @@ def send_static(filename):
 def align():
     seq1 = request.args.get('seq1', '')
     seq2 = request.args.get('seq2', '')
-    print seq1
-    print seq2
 
-    alignment = pairwise2.align.globalxx(seq1, seq2)
-
-    data = {
-        u'results': alignment
-    }
+    data = {}
+    results = pairwise2.align.globalxx(seq1, seq2)
+    if len(results) > 0:
+        results = sorted(results, key=lambda x: x[2], reverse=True)
+        alignment = results[0]
+        data = {
+            u'results': {
+                u'seq1': alignment[0],
+                u'seq2': alignment[1],
+                u'score': alignment[2]
+            },
+            u'seq1': seq1,
+            u'seq2': seq2
+        }
     return jsonify(**data)
 
 if __name__ == "__main__":

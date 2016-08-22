@@ -16,18 +16,18 @@ class App extends Component {
     this.state = {
       seq1: 'ACCGT',
       seq2: 'ACG',
-      results: []
+      results: {}
     };
   }
 
   onSequenceAlign(e){
     e.preventDefault();
+
     let { seq1, seq2 } = this.state;
     alignSequences(seq1, seq2).then((response) => {
-      // console.log(response);
-      let result = response.results[0];
+      let results = response.results;
       this.setState({
-        results: [result[0], result[1]]
+        results: results
       });
     });
   }

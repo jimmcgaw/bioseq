@@ -95,7 +95,7 @@
 	    _this.state = {
 	      seq1: 'ACCGT',
 	      seq2: 'ACG',
-	      results: []
+	      results: {}
 	    };
 	    return _this;
 	  }
@@ -106,15 +106,15 @@
 	      var _this2 = this;
 
 	      e.preventDefault();
+
 	      var _state = this.state;
 	      var seq1 = _state.seq1;
 	      var seq2 = _state.seq2;
 
 	      (0, _align2.default)(seq1, seq2).then(function (response) {
-	        // console.log(response);
-	        var result = response.results[0];
+	        var results = response.results;
 	        _this2.setState({
-	          results: [result[0], result[1]]
+	          results: results
 	        });
 	      });
 	    }
@@ -21658,16 +21658,27 @@
 	  _createClass(AlignmentResults, [{
 	    key: "render",
 	    value: function render() {
+	      var results = this.props.results;
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "jumbotron results" },
-	        this.props.results.map(function (result) {
-	          return _react2.default.createElement(
-	            "div",
-	            null,
-	            result
-	          );
-	        })
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          results.seq1
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          results.seq2
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          "Score: ",
+	          results.score
+	        )
 	      );
 	    }
 	  }]);
